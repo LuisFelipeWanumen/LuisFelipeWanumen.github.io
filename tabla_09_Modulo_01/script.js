@@ -101,8 +101,15 @@ const materias = [
     nombre: "3 - FISICA I: MECANICA NEWTONIANA",
     area: "Ciencias Básicas",
     datos: [
-      { semestre: "2020-1", inscritos: 60, reprobados: 15 },
-      { semestre: "2020-2", inscritos: 58, reprobados: 12 },
+      { semestre: "2020-1", inscritos: 180, reprobados: 36 },
+      { semestre: "2020-3", inscritos: 124, reprobados: 40 },
+      { semestre: "2021-1", inscritos: 133, reprobados: 39 },
+      { semestre: "2021-3", inscritos: 218, reprobados: 48 },
+      { semestre: "2022-1", inscritos: 113, reprobados: 52 },
+      { semestre: "2022-3", inscritos: 86, reprobados: 40 },
+      { semestre: "2023-1", inscritos: 77, reprobados: 16 },
+      { semestre: "2023-3", inscritos: 106, reprobados: 20 },
+      { semestre: "2024-1", inscritos: 120, reprobados: 38 },
     ]
   },
   {
