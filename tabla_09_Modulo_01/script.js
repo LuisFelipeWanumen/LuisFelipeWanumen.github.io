@@ -122,7 +122,53 @@ const materias = [
       { semestre: "2021-3", inscritos: 138, reprobados: 37 },
       { semestre: "2022-1", inscritos: 129, reprobados: 33 },
       { semestre: "2022-3", inscritos: 121, reprobados: 37 },
-      { semestre: "2023-1", inscritos: 158, reprobados: 30 },      
+      { semestre: "2023-1", inscritos: 158, reprobados: 30 },
+      { semestre: "2023-2", inscritos: 2, reprobados: 0 },
+      { semestre: "2023-3", inscritos: 132, reprobados: 37 },
+      { semestre: "2024-1", inscritos: 186, reprobados: 36 },
+    ]
+  },
+  {
+    nombre: "7 - CALCULO INTEGRAL",
+    area: "Ciencias Básicas",
+    datos: [
+      { semestre: "2020-1", inscritos: 91, reprobados: 7 },
+      { semestre: "2020-3", inscritos: 142, reprobados: 21 },
+      { semestre: "2021-1", inscritos: 114, reprobados: 30 },
+      { semestre: "2021-3", inscritos: 118, reprobados: 61 },
+      { semestre: "2022-1", inscritos: 110, reprobados: 65 },
+      { semestre: "2022-3", inscritos: 120, reprobados: 58 },
+      { semestre: "2023-1", inscritos: 104, reprobados: 58 },
+      { semestre: "2023-3", inscritos: 166, reprobados: 91 },
+      { semestre: "2024-1", inscritos: 180, reprobados: 95 },
+    ]
+  },
+  {
+    nombre: "8 - HISTORIA Y CULTURA COLOMBIANA",
+    area: "Humanidades - Electiva",
+    datos: [
+      { semestre: "2020-1", inscritos: 1, reprobados: 0 },
+      { semestre: "2020-3", inscritos: 1, reprobados: 0 },
+      { semestre: "2021-1", inscritos: 1, reprobados: 0 },
+      { semestre: "2022-1", inscritos: 3, reprobados: 0 },
+      { semestre: "2022-3", inscritos: 1, reprobados: 0 },
+      { semestre: "2023-3", inscritos: 3, reprobados: 0 },
+      { semestre: "2024-1", inscritos: 5, reprobados: 1 },
+    ]
+  },
+  {
+    nombre: "9 - ALGEBRA LINEAL",
+    area: "Ciencias Básicas",
+    datos: [
+      { semestre: "2020-1", inscritos: 171, reprobados: 53 },
+      { semestre: "2020-3", inscritos: 156, reprobados: 49 },
+      { semestre: "2021-1", inscritos: 145, reprobados: 50 },
+      { semestre: "2021-3", inscritos: 158, reprobados: 78 },
+      { semestre: "2022-1", inscritos: 166, reprobados: 79 },
+      { semestre: "2022-3", inscritos: 154, reprobados: 96 },
+      { semestre: "2023-1", inscritos: 211, reprobados: 123 },
+      { semestre: "2023-3", inscritos: 203, reprobados: 90 },
+      { semestre: "2024-1", inscritos: 224, reprobados: 116 },      
     ]
   },
 ];
