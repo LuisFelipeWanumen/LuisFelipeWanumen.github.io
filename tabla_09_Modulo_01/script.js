@@ -90,6 +90,11 @@ const materias = [
       { semestre: "2021-1", inscritos: 138, reprobados: 53 },
       { semestre: "2021-3", inscritos: 166, reprobados: 98 },
       { semestre: "2022-1", inscritos: 176, reprobados: 101 },
+      { semestre: "2022-3", inscritos: 175, reprobados: 118 },
+      { semestre: "2023-1", inscritos: 225, reprobados: 136 },
+      { semestre: "2023-2", inscritos: 26, reprobados: 4 },
+      { semestre: "2023-3", inscritos: 192, reprobados: 178 },
+      { semestre: "2024-1", inscritos: 216, reprobados: 81 },      
     ]
   },
   {
