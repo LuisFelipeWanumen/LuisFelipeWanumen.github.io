@@ -116,8 +116,13 @@ const materias = [
     nombre: "4 - CATEDRA FRANCISCO JOSE DE CALDAS",
     area: "Humanidades",
     datos: [
-      { semestre: "2020-1", inscritos: 70, reprobados: 20 },
-      { semestre: "2020-2", inscritos: 65, reprobados: 18 },
+      { semestre: "2020-1", inscritos: 126, reprobados: 18 },
+      { semestre: "2020-3", inscritos: 135, reprobados: 25 },
+      { semestre: "2021-1", inscritos: 116, reprobados: 24 },
+      { semestre: "2021-3", inscritos: 138, reprobados: 37 },
+      { semestre: "2022-1", inscritos: 129, reprobados: 33 },
+      { semestre: "2022-3", inscritos: 121, reprobados: 37 },
+      { semestre: "2023-1", inscritos: 158, reprobados: 30 },      
     ]
   },
 ];
