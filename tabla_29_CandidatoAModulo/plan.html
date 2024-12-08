@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan de Mejoramiento - Indicadores de Progreso</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .project-card {
+      background-color: #ffffff;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .semáforo {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .semáforo.verde {
+      background-color: #4caf50;
+    }
+
+    .semáforo.amarillo {
+      background-color: #ffeb3b;
+    }
+
+    .semáforo.rojo {
+      background-color: #f44336;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #f3f3f3;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .progress-bar-fill {
+      height: 20px;
+      border-radius: 5px;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .accordion-button {
+      padding: 10px;
+      background-color: #2a5298;
+      color: white;
+      border: none;
+      width: 100%;
+      text-align: left;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .accordion-content {
+      padding: 10px;
+      background-color: #f9f9f9;
+      display: none;
+      border-radius: 5px;
+    }
+  </style>
+  <link rel="stylesheet" href="styles_menu.css">
+</head>
+<body>
+
+
+
+
+
+    <!-- Botón de tres rayas -->
+    <button class="menu-btn" id="menu-btn">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </button>
+
+    <!-- Menú -->
+    <div class="menu" id="menu">
+      <!-- Primer opción de menú -->
+      <a href="https://www.ejemplo1.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 12h18"></path>
+          <path d="M3 6h18"></path>
+          <path d="M3 18h18"></path>
+        </svg>
+        Opción 1
+      </a>
+      <!-- Otras opciones del menú -->
+      <a href="https://www.ejemplo2.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+        Opción 2
+      </a>
+      <a href="https://www.ejemplo3.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Opción 3
+      </a>
+    </div>
+
+
+
+
+
+
+
+  <h1>Plan de Mejoramiento - Indicadores de Progreso</h1>
+
+  <!-- Sección de Proyectos -->
+  <div class="project-card">
+    <h2>Proyecto 1</h2>
+    <p>Descripción breve del Proyecto 1</p>
+
+    <!-- Semáforo de progreso del proyecto -->
+    <div><span class="semáforo" id="semaforoProyecto1"></span> Progreso del Proyecto: <span id="progresoProyecto1">0%</span></div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-button" onclick="toggleAccordion('factor3')">Factor 3 <span id="semaforoFactor3" class="semáforo"></span></button>
+      <div class="accordion-content" id="factor3">
+        <h4>Meta 1</h4>
+        <div>Indicador de Progreso: <span id="progresoMeta1">0%</span></div>
+        <div class="progress-bar">
+          <div id="barMeta1" class="progress-bar-fill" style="width: 0%;">0%</div>
+        </div>
+        <button onclick="updateActivity('meta1', 30)">Actividad 1 (30%)</button>
+        <button onclick="updateActivity('meta1', 70)">Actividad 2 (70%)</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Función para alternar la visibilidad de las secciones (accordion)
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Función para actualizar el progreso de las actividades
+    function updateActivity(metaId, progreso) {
+      let totalProgress = 0;
+      const activities = [30, 70]; // Simulamos las actividades con porcentajes
+
+      // Actualiza el progreso de la actividad
+      totalProgress = activities.reduce((acc, curr) => acc + curr, 0) / activities.length;
+
+      // Calcula el progreso de la meta
+      document.getElementById(`progresoMeta1`).innerText = `${totalProgress}%`;
+
+      // Actualiza la barra de progreso
+      const progressBar = document.getElementById('barMeta1');
+      progressBar.style.width = `${totalProgress}%`;
+      progressBar.innerText = `${totalProgress}%`;
+
+      // Calcula el progreso del factor
+      updateFactorProgress(totalProgress);
+    }
+
+    // Función para actualizar el progreso del factor
+    function updateFactorProgress(progresoMeta) {
+      const factorProgress = progresoMeta; // Puedes ponderar más si es necesario
+      document.getElementById("progresoProyecto1").innerText = `${factorProgress}%`;
+      
+      // Actualiza el semáforo según el progreso
+      const semaforoProyecto = document.getElementById("semaforoProyecto1");
+      const semaforoFactor = document.getElementById("semaforoFactor3");
+      
+      // Actualiza el semáforo de progreso para el proyecto y factor
+      if (factorProgress === 100) {
+        semaforoProyecto.className = "semáforo verde";
+        semaforoFactor.className = "semáforo verde";
+      } else if (factorProgress >= 50) {
+        semaforoProyecto.className = "semáforo amarillo";
+        semaforoFactor.className = "semáforo amarillo";
+      } else {
+        semaforoProyecto.className = "semáforo rojo";
+        semaforoFactor.className = "semáforo rojo";
+      }
+    }
+  </script>
+  <script src="script_menu.js"></script>
+</body>
+</html>

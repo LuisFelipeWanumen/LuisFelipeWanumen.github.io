@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acreditación de Programas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #f4f4f9;
+        }
+
+        /* Estilo del menú lateral */
+        #sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        #sidebar h2 {
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sidebar li {
+            margin: 10px 0;
+        }
+
+        #sidebar li a {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            display: block;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        #sidebar li a:hover {
+            background-color: #4CAF50;
+        }
+
+        .collapsible {
+            cursor: pointer;
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .collapsible.active {
+            background-color: #4CAF50;
+        }
+
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #555;
+            padding-left: 10px;
+        }
+
+        .content ul {
+            list-style-type: circle;
+            padding: 0;
+        }
+
+        .content ul li {
+            margin: 5px 0;
+        }
+
+        /* Contenedor principal */
+        #main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #main-content h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            border: 1px solid #ddd;
+            width: 80%;
+            height: 600px;
+            margin-bottom: 10px;
+        }
+
+        .navigation {
+            margin-top: 10px;
+        }
+
+        .navigation button {
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navigation button:hover {
+            background-color: #45a049;
+        }
+
+        #description {
+            margin: 10px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .gauge {
+            margin-top: 20px;
+            width: 200px;
+            height: 100px;
+            background: conic-gradient(
+                #4CAF50 var(--percentage, 0%),
+                #ccc 0
+            );
+            border-radius: 100px 100px 0 0;
+            position: relative;
+        }
+
+        .gauge::after {
+            content: '';
+            width: 80%;
+            height: 40%;
+            background: white;
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            border-radius: 50%;
+        }
+
+        .gauge-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: black;
+        }
+    </style>
+    <link rel="stylesheet" href="styles_menu.css">
+</head>
+<body>
+
+
+
+
+    <!-- Botón de tres rayas -->
+    <button class="menu-btn" id="menu-btn">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </button>
+
+    <!-- Menú -->
+    <div class="menu" id="menu">
+      <!-- Primer opción de menú -->
+      <a href="https://www.ejemplo1.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 12h18"></path>
+          <path d="M3 6h18"></path>
+          <path d="M3 18h18"></path>
+        </svg>
+        Opción 1
+      </a>
+      <!-- Otras opciones del menú -->
+      <a href="https://www.ejemplo2.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+        Opción 2
+      </a>
+      <a href="https://www.ejemplo3.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Opción 3
+      </a>
+    </div>
+
+
+
+
+    <!-- Menú lateral -->
+    <div id="sidebar">
+        <h2>Factores</h2>
+        <ul id="factor-list">
+            <!-- Factores y características dinámicamente generados -->
+        </ul>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div id="main-content">
+        <h1>Documentos Relacionados</h1>
+        <iframe id="document-viewer" src=""></iframe>
+        <div id="description"></div>
+        <div class="gauge" style="--percentage: 50%;">
+            <div class="gauge-label">50%</div>
+        </div>
+        <div class="navigation">
+            <button onclick="prevPage()">Página Anterior</button>
+            <button onclick="nextPage()">Siguiente Página</button>
+            <button onclick="toggleFullScreen()">Pantalla Completa</button>
+        </div>
+    </div>
+
+    <script>
+        // Datos de factores, características, documentos y descripciones
+        const data = {
+            "Factor 1": {
+                "Característica 1.1": {
+                    documents: ["documentos/doc1.pdf", "documentos/doc2.pdf"],
+                    description: "Descripción de la característica 1.1",
+                    completion: 70
+                },
+                "Característica 1.2": {
+                    documents: ["documentos/doc3.pdf"],
+                    description: "Descripción de la característica 1.2",
+                    completion: 90
+                }
+            },
+            "Factor 2": {
+                "Característica 2.1": {
+                    documents: ["documentos/doc4.pdf"],
+                    description: "Descripción de la característica 2.1",
+                    completion: 50
+                },
+                "Característica 2.2": {
+                    documents: ["documentos/doc5.pdf", "documentos/doc6.pdf"],
+                    description: "Descripción de la característica 2.2",
+                    completion: 60
+                }
+            }
+        };
+
+        let currentFactor = null;
+        let currentCharacteristic = null;
+        let currentDocumentIndex = 0;
+
+        const factorList = document.getElementById('factor-list');
+        for (const [factor, characteristics] of Object.entries(data)) {
+            const factorButton = document.createElement('button');
+            factorButton.className = 'collapsible';
+            factorButton.textContent = factor;
+
+            const characteristicList = document.createElement('div');
+            characteristicList.className = 'content';
+
+            for (const [characteristic] of Object.entries(characteristics)) {
+                const characteristicItem = document.createElement('li');
+                characteristicItem.innerHTML = `<a onclick="selectCharacteristic('${factor}', '${characteristic}')">${characteristic}</a>`;
+                characteristicList.appendChild(characteristicItem);
+            }
+
+            factorList.appendChild(factorButton);
+            factorList.appendChild(characteristicList);
+
+            factorButton.addEventListener('click', function () {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        }
+
+        function selectCharacteristic(factor, characteristic) {
+            currentFactor = factor;
+            currentCharacteristic = characteristic;
+            currentDocumentIndex = 0;
+            updateViewer();
+        }
+
+        function updateViewer() {
+            const characteristic = data[currentFactor][currentCharacteristic];
+            const documents = characteristic.documents;
+            const description = characteristic.description;
+            const completion = characteristic.completion;
+
+            document.getElementById('document-viewer').src = documents[currentDocumentIndex];
+            document.getElementById('description').textContent = description;
+            const gauge = document.querySelector('.gauge');
+            gauge.style.setProperty('--percentage', `${completion}%`);
+            gauge.querySelector('.gauge-label').textContent = `${completion}%`;
+        }
+
+        function prevPage() {
+            // Implementar navegación entre páginas del documento
+        }
+
+        function nextPage() {
+            // Implementar navegación entre páginas del documento
+        }
+
+        function toggleFullScreen() {
+            const viewer = document.getElementById('main-content');
+            if (!document.fullscreenElement) {
+                viewer.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        const firstFactor = Object.keys(data)[0];
+        if (firstFactor) {
+            const firstCharacteristic = Object.keys(data[firstFactor])[0];
+            selectCharacteristic(firstFactor, firstCharacteristic);
+        }
+    </script>
+    <script src="script_menu.js"></script>
+</body>
+</html>

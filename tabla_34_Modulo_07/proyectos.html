@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Proyectos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_menu.css">
+</head>
+<body>
+
+
+
+
+
+
+    <!-- Botón de tres rayas -->
+    <button class="menu-btn" id="menu-btn">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </button>
+
+    <!-- Menú -->
+    <div class="menu" id="menu">
+      <!-- Primer opción de menú -->
+      <a href="https://www.ejemplo1.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 12h18"></path>
+          <path d="M3 6h18"></path>
+          <path d="M3 18h18"></path>
+        </svg>
+        Opción 1
+      </a>
+      <!-- Otras opciones del menú -->
+      <a href="https://www.ejemplo2.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+        Opción 2
+      </a>
+      <a href="https://www.ejemplo3.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Opción 3
+      </a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Barra lateral con proyectos -->
+    <div id="sidebar">
+        <h2>Proyectos</h2>
+        <ul id="project-list">
+            <!-- Los proyectos se cargarán dinámicamente -->
+        </ul>
+    </div>
+
+    <!-- Contenido principal -->
+    <div id="main-content">
+        <h2>Detalles del Proyecto</h2>
+        
+        <!-- Factores del proyecto -->
+        <div id="factor-list">
+            <h3>Factores</h3>
+            <ul id="factors">
+                <!-- Los factores se cargarán dinámicamente -->
+            </ul>
+        </div>
+        
+        <!-- Metas del factor seleccionado -->
+        <div id="goal-list">
+            <h3>Metas</h3>
+            <ul id="goals">
+                <!-- Las metas se cargarán dinámicamente -->
+            </ul>
+        </div>
+
+        <!-- Actividades de la meta seleccionada -->
+        <div id="activity-list">
+            <h3>Actividades</h3>
+            <ul id="activities">
+                <!-- Las actividades se cargarán dinámicamente -->
+            </ul>
+        </div>
+
+        <!-- Semáforo de progreso -->
+        <div id="progress-semaforo">
+            <h3>Progreso del Factor</h3>
+            <div id="semaforo">
+                <!-- Aquí se mostrará el semáforo de progreso -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="script_menu.js"></script>
+</body>
+</html>

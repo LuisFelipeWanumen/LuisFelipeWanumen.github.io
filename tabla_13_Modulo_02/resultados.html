@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relación de Asignaturas y Resultados de Aprendizaje</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_menu.css">
+</head>
+<body>
+
+
+
+    <!-- Botón de tres rayas -->
+    <button class="menu-btn" id="menu-btn">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </button>
+
+    <!-- Menú -->
+    <div class="menu" id="menu">
+      <!-- Primer opción de menú -->
+      <a href="https://www.ejemplo1.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 12h18"></path>
+          <path d="M3 6h18"></path>
+          <path d="M3 18h18"></path>
+        </svg>
+        Opción 1
+      </a>
+      <!-- Otras opciones del menú -->
+      <a href="https://www.ejemplo2.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+        Opción 2
+      </a>
+      <a href="https://www.ejemplo3.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Opción 3
+      </a>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="container">
+        <h1>Relación de Asignaturas y Resultados de Aprendizaje</h1>
+        <!-- Filtros -->
+        <div class="filters">
+            <label for="area-filter">Área:</label>
+            <select id="area-filter">
+                <option value="Todos">Todos</option>
+                <option value="Matemáticas">Matemáticas</option>
+                <option value="Programación">Programación</option>
+                <option value="Ciencias Básicas">Ciencias Básicas</option>
+            </select>
+
+            <label for="result-filter">Resultado de Aprendizaje:</label>
+            <select id="result-filter">
+                <option value="Todos">Todos</option>
+                <option value="RA1">RA1</option>
+                <option value="RA2">RA2</option>
+                <option value="RA3">RA3</option>
+                <option value="RA4">RA4</option>
+                <option value="RA5">RA5</option>
+            </select>
+
+            <label for="multi-area-filter">Áreas Múltiples:</label>
+            <input type="checkbox" id="multi-area-filter">
+        </div>
+
+        <!-- Descripción del resultado -->
+        <div id="result-description" class="description">
+            <p>Selecciona una celda para ver la descripción del resultado de aprendizaje.</p>
+        </div>
+
+        <!-- Tabla de datos -->
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Asignatura</th>
+                    <th>RA1</th>
+                    <th>RA2</th>
+                    <th>RA3</th>
+                    <th>RA4</th>
+                    <th>RA5</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas dinámicas -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="scripts_menu.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

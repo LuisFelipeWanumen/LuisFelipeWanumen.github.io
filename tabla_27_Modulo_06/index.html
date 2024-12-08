@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matriz DOFA con Priorización Eisenhower</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(to bottom right, #4CAF50, #0599f5);
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      color: #FFD700;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .strategy-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .strategy-list {
+      width: 45%;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .strategy-list h2 {
+      margin-top: 0;
+    }
+
+    .strategy-list input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .strategy-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .strategy-list li {
+      background: #444;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .strategy-list li:hover {
+      background: #555;
+    }
+
+    .eisenhower-matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .quadrant {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .quadrant h3 {
+      margin-top: 0;
+      font-size: 16px;
+      color: #FFD700;
+    }
+
+    .quadrant ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .quadrant li {
+      background: #444;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .priority-high {
+      background-color: red;
+    }
+
+    .priority-medium {
+      background-color: yellow;
+    }
+
+    .priority-low {
+      background-color: green;
+    }
+
+    .details {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+    }
+
+    .details h3 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #FFD700;
+    }
+
+    .details p {
+      color: white;
+    }
+  </style>
+  <link rel="stylesheet" href="styles_menu.css">
+</head>
+<body>
+
+
+
+    <!-- Botón de tres rayas -->
+    <button class="menu-btn" id="menu-btn">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </button>
+
+    <!-- Menú -->
+    <div class="menu" id="menu">
+      <!-- Primer opción de menú -->
+      <a href="https://www.ejemplo1.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 12h18"></path>
+          <path d="M3 6h18"></path>
+          <path d="M3 18h18"></path>
+        </svg>
+        Opción 1
+      </a>
+      <!-- Otras opciones del menú -->
+      <a href="https://www.ejemplo2.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+        Opción 2
+      </a>
+      <a href="https://www.ejemplo3.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Opción 3
+      </a>
+    </div>
+
+
+
+
+
+
+  <h1>Matriz DOFA con Priorización Eisenhower</h1>
+
+  <div class="container">
+    <!-- Listado de estrategias -->
+    <div class="strategy-container">
+      <div class="strategy-list">
+        <h2>Estrategias Disponibles</h2>
+        <input type="text" id="search" placeholder="Buscar estrategias...">
+        <ul id="available-strategies"></ul>
+      </div>
+
+      <!-- Descripción detallada -->
+      <div class="details" id="strategy-details">
+        <h3>Detalles de la Estrategia</h3>
+        <p id="strategy-description">Haz clic en una estrategia para ver los detalles.</p>
+      </div>
+    </div>
+
+    <!-- Matriz de Eisenhower -->
+    <div class="eisenhower-matrix">
+      <div class="quadrant" id="urgent-important">
+        <h3>Urgente e Importante</h3>
+        <ul id="urgent-important-list"></ul>
+        <p id="urgent-important-count">0 estrategias</p>
+      </div>
+      <div class="quadrant" id="not-urgent-important">
+        <h3>No Urgente pero Importante</h3>
+        <ul id="not-urgent-important-list"></ul>
+        <p id="not-urgent-important-count">0 estrategias</p>
+      </div>
+      <div class="quadrant" id="urgent-not-important">
+        <h3>Urgente pero No Importante</h3>
+        <ul id="urgent-not-important-list"></ul>
+        <p id="urgent-not-important-count">0 estrategias</p>
+      </div>
+      <div class="quadrant" id="not-urgent-not-important">
+        <h3>No Urgente ni Importante</h3>
+        <ul id="not-urgent-not-important-list"></ul>
+        <p id="not-urgent-not-important-count">0 estrategias</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Referencias
+    const availableStrategies = document.getElementById("available-strategies");
+    const searchInput = document.getElementById("search");
+
+    // Cuadrantes
+    const urgentImportantList = document.getElementById("urgent-important-list");
+    const notUrgentImportantList = document.getElementById("not-urgent-important-list");
+    const urgentNotImportantList = document.getElementById("urgent-not-important-list");
+    const notUrgentNotImportantList = document.getElementById("not-urgent-not-important-list");
+
+    const strategyDetails = document.getElementById("strategy-description");
+
+    // Datos de las estrategias (asumido como entrada inicial)
+    const savedData = {
+      strategies: [
+        { id: 1, title: "FO1: Maximizar ventas", urgent: true, important: true, description: "Expandir las operaciones para incrementar ingresos en el corto plazo." },
+        { id: 2, title: "FO2: Innovación tecnológica", urgent: false, important: true, description: "Iniciar un proyecto de investigación y desarrollo de nuevos productos." },
+        { id: 3, title: "FA1: Diversificación", urgent: true, important: false, description: "Diversificar las inversiones en sectores no relacionados." },
+        { id: 4, title: "DO1: Capacitación del equipo", urgent: false, important: true, description: "Entrenar al equipo en nuevas tecnologías y metodologías." },
+        { id: 5, title: "DA1: Plan de contingencia", urgent: true, important: true, description: "Elaborar un plan para posibles crisis y emergencias." }
+      ],
+      quadrants: {
+        "urgent-important": [],
+        "not-urgent-important": [],
+        "urgent-not-important": [],
+        "not-urgent-not-important": []
+      }
+    };
+
+    // Función para asignar las estrategias a los cuadrantes
+    function assignStrategiesToQuadrants() {
+      savedData.strategies.forEach(strategy => {
+        if (strategy.urgent && strategy.important) {
+          savedData.quadrants["urgent-important"].push(strategy);
+        } else if (!strategy.urgent && strategy.important) {
+          savedData.quadrants["not-urgent-important"].push(strategy);
+        } else if (strategy.urgent && !strategy.important) {
+          savedData.quadrants["urgent-not-important"].push(strategy);
+        } else {
+          savedData.quadrants["not-urgent-not-important"].push(strategy);
+        }
+      });
+    }
+
+    // Función para mostrar las estrategias en la lista de estrategias disponibles
+    function renderAvailableStrategies(filteredStrategies) {
+      availableStrategies.innerHTML = "";
+      filteredStrategies.forEach(strategy => {
+        const li = document.createElement("li");
+        li.textContent = strategy.title;
+        li.addEventListener("click", () => showStrategyDetails(strategy));
+        availableStrategies.appendChild(li);
+      });
+    }
+
+    // Función para mostrar los detalles de la estrategia seleccionada
+    function showStrategyDetails(strategy) {
+      strategyDetails.textContent = strategy.description;
+    }
+
+    // Función para renderizar los cuadrantes y contadores
+    function renderQuadrants() {
+      const quadrants = ["urgent-important", "not-urgent-important", "urgent-not-important", "not-urgent-not-important"];
+
+      quadrants.forEach(quadrant => {
+        const list = document.getElementById(`${quadrant}-list`);
+        const countElement = document.getElementById(`${quadrant}-count`);
+
+        list.innerHTML = "";
+        savedData.quadrants[quadrant].forEach(strategy => {
+          const li = document.createElement("li");
+          li.textContent = strategy.title;
+          list.appendChild(li);
+        });
+
+        countElement.textContent = `${savedData.quadrants[quadrant].length} estrategias`;
+      });
+    }
+
+    // Función de filtrado de estrategias basado en la búsqueda
+    function filterStrategies(event) {
+      const query = event.target.value.toLowerCase();
+      const filteredStrategies = savedData.strategies.filter(strategy => 
+        strategy.title.toLowerCase().includes(query) || strategy.description.toLowerCase().includes(query)
+      );
+      renderAvailableStrategies(filteredStrategies);
+    }
+
+    // Inicializar todo
+    assignStrategiesToQuadrants();
+    renderAvailableStrategies(savedData.strategies);
+    renderQuadrants();
+
+    // Añadir evento al cuadro de búsqueda
+    searchInput.addEventListener("input", filterStrategies);
+  </script>
+  <script src="script_menu.js"></script>
+</body>
+</html>

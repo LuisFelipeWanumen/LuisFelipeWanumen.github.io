@@ -1,0 +1,136 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    /* background-color: #f4f4f9;   */
+    background: linear-gradient(to bottom right, #4CAF50, #0599f5);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Estilo para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+table th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1rem;
+}
+
+table td {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Efectos al pasar el ratón sobre las celdas */
+table td:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+table td.active {
+    background-color: #FFEB3B; /* Celda activa */
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+/* Justificación */
+.justification {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.justification h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.justification p {
+    color: #555;
+    font-size: 1.1rem;
+}
+
+/* Animación para la justificación */
+.justification p {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.justification p.show {
+    opacity: 1;
+}
+
+/* Efecto en la tabla */
+table td {
+    border-radius: 8px;
+}
+
+table th,
+table td {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Tabla en modo noche (oscuro) */
+body.night-mode {
+    background-color: #333;
+    color: white;
+}
+
+body.night-mode .container {
+    background-color: #222;
+}
+
+body.night-mode table th {
+    background-color: #2E7D32;
+}
+
+body.night-mode table td {
+    background-color: #424242;
+    color: white;
+}
+
+body.night-mode .justification {
+    background-color: #333;
+    color: white;
+}
+
+body.night-mode .justification p {
+    color: #ddd;
+}

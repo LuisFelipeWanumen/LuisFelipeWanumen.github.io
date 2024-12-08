@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualización de Deserción</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles_menu.css">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/full-screen.js"></script>
+</head>
+<body>
+
+
+
+
+    <!-- Botón de tres rayas -->
+    <button class="menu-btn" id="menu-btn">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </button>
+
+    <!-- Menú -->
+    <div class="menu" id="menu">
+      <!-- Primer opción de menú -->
+      <a href="https://www.ejemplo1.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 12h18"></path>
+          <path d="M3 6h18"></path>
+          <path d="M3 18h18"></path>
+        </svg>
+        Opción 1
+      </a>
+      <!-- Otras opciones del menú -->
+      <a href="https://www.ejemplo2.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+        Opción 2
+      </a>
+      <a href="https://www.ejemplo3.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Opción 3
+      </a>
+    </div>
+
+
+
+
+
+
+
+  <div class="container">
+    <h1>Visualización de Deserción por Materia</h1>
+    <!-- Filtros -->
+    <div class="filters">
+      <label for="area-filter">Filtrar por área:</label>
+      <select id="area-filter">
+        <!-- Opciones dinámicas -->
+      </select>
+
+      <label for="search-materia">Buscar materia:</label>
+      <input type="text" id="search-materia" placeholder="Nombre de la materia">
+    </div>
+
+    <!-- Botones -->
+    <div class="actions">
+      <button id="show-chart" class="btn">Mostrar Gráfica</button>
+      <button id="print-table" class="btn">Imprimir Tabla</button>
+      <button id="fullscreen-chart" class="btn">Vista Fullscreen</button>
+    </div>
+
+    <!-- Tabla -->
+    <table id="data-table" class="table">
+      <thead>
+        <tr>
+          <th>Materia</th>
+          <th>Área</th>
+          <th>Semestre</th>
+          <th>Inscritos</th>
+          <th>Reprobados</th>
+          <th>Tasa de Reprobación (%)</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <!-- Filas dinámicas -->
+      </tbody>
+    </table>
+
+    <!-- Contenedor para la gráfica -->
+    <div id="chart-container" class="chart"></div>
+    <div id="grafica-container" style="width:100%; height:400px;"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script src="script_menu.js"></script>
+</body>
+</html>
+

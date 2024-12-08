@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relaciones Verbos - Materias - Áreas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_menu.css">
+</head>
+<body>
+
+
+
+    <!-- Botón de tres rayas -->
+    <button class="menu-btn" id="menu-btn">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </button>
+
+    <!-- Menú -->
+    <div class="menu" id="menu">
+      <!-- Primer opción de menú -->
+      <a href="https://www.ejemplo1.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 12h18"></path>
+          <path d="M3 6h18"></path>
+          <path d="M3 18h18"></path>
+        </svg>
+        Opción 1
+      </a>
+      <!-- Otras opciones del menú -->
+      <a href="https://www.ejemplo2.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+        Opción 2
+      </a>
+      <a href="https://www.ejemplo3.com" class="menu-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Opción 3
+      </a>
+    </div>
+
+
+
+
+
+
+
+    <div class="container">
+        <h1>Relaciones de Verbos, Materias y Áreas</h1>
+        <!-- Filtros -->
+        <div class="filters">
+            <label for="area-filter">Área:</label>
+            <select id="area-filter">
+                <option value="Todos">Todos</option>
+                <option value="Matemáticas">Matemáticas</option>
+                <option value="Programación">Programación</option>
+                <option value="Ciencias Básicas">Ciencias Básicas</option>
+            </select>
+
+            <label for="verb-filter">Verbo:</label>
+            <select id="verb-filter">
+                <option value="Todos">Todos</option>
+                <option value="Guardar">Guardar</option>
+                <option value="Borrar">Borrar</option>
+                <option value="Sincronizar">Sincronizar</option>
+                <option value="Actualizar">Actualizar</option>
+            </select>
+
+            <label for="multi-area-filter">Verbos en Varias Áreas:</label>
+            <input type="checkbox" id="multi-area-filter">
+        </div>
+
+        <!-- Descripción del verbo -->
+        <div id="verb-description" class="description">
+            <p>Selecciona un verbo o una materia para ver más información.</p>
+        </div>
+
+        <!-- Tabla de datos -->
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Materia</th>
+                    <th>Verbo</th>
+                    <th>Área</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas dinámicas -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script src="scripts_menu.js"></script>
+</body>
+</html>
