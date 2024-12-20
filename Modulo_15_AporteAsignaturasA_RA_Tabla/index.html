@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerencia y Auditoría de Redes - Tablas de Resultados</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Resultados de Aprendizaje - Gerencia y Auditoría de Redes</h1>
+    </header>
+    
+    <div class="container">
+        <!-- Contenedor de las tablas -->
+        <div id="tables-container">
+            <div class="table" id="table-1">
+                <h2>Tabla 1: Relación con Resultados de Aprendizaje</h2>
+                <!-- Aquí va la tabla 1 -->
+                <div id="highcharts-container-1"></div>
+            </div>
+
+            <!-- Aquí puedes agregar más tablas con la misma estructura -->
+            <!-- Ejemplo de otra tabla -->
+            <div class="table" id="table-2">
+                <h2>Tabla 2: Relación con Resultados de Aprendizaje</h2>
+                <div id="highcharts-container-2"></div>
+            </div>
+
+            <!-- Agregar más tablas según sea necesario -->
+        </div>
+
+        <!-- Navegación de tablas -->
+        <div id="table-navigation">
+            <button id="prev-table">Anterior</button>
+            <button id="next-table">Siguiente</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Universidad Distrital Francisco José de Caldas</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Arquitecturas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <button id="toggle-menu">☰</button>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Configuración</a></li>
+            <li><a href="#">Ayuda</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <header>
+            <h1>Asignación de Resultados de Aprendizaje</h1>
+        </header>
+        <main>
+            <section class="selector">
+                <label for="architecture">Seleccionar Arquitectura:</label>
+                <select id="architecture">
+                    <option value="data">De Datos</option>
+                    <option value="application">De Aplicación</option>
+                    <option value="infrastructure">De Infraestructura</option>
+                    <option value="business">De Negocio</option>
+                </select>
+            </section>
+            <section class="buttons">
+                <button id="fullscreen">Pantalla Completa</button>
+                <button id="export-pdf">Exportar a PDF</button>
+            </section>
+            <section class="main-table">
+                <h2>Asignaturas y Resultados</h2>
+                <table id="assignments">
+                    <thead>
+                        <tr>
+                            <th>Asignatura</th>
+                            <th>Resultado de Aprendizaje</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filas dinámicas -->
+                    </tbody>
+                </table>
+            </section>
+            <section class="details">
+                <h2>Razones de No Selección</h2>
+                <table id="reasons">
+                    <thead>
+                        <tr>
+                            <th>Resultado de Aprendizaje</th>
+                            <th>Razón</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Detalles dinámicos -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>

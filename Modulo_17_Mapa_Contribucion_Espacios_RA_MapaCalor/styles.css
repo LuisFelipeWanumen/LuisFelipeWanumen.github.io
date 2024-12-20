@@ -1,0 +1,58 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+}
+
+header button {
+  background-color: #fff;
+  color: #4CAF50;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+header button:hover {
+  background-color: #ddd;
+}
+
+#menu {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  background: #333;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  display: none;
+  width: 200px;
+}
+
+#menu h3 {
+  margin-top: 0;
+}
+
+#menu label {
+  display: block;
+  margin: 10px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#heatmap-container {
+  margin: 20px;
+  height: 600px;
+}

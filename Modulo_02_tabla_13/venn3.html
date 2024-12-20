@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/venn.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+</head>
+<body>
+    <div id="vennContainer" style="width: 1200px; height: 900px;"></div>
+    <script>
+        Highcharts.chart('vennContainer', {
+            title: {
+                text: 'Diagrama de Venn con Cinco Conjuntos'
+            },
+            tooltip: {
+                formatter: function () {
+                    const elements = {
+                        'Humanidades': 'Elementos: {1, 2, 3, 4}',
+                        'B': 'Elementos: {3, 5, 6, 7}',
+                        'C': 'Elementos: {4, 8, 9, 10}',
+                        'D': 'Elementos: {11, 12, 13, 14}',
+                        'E': 'Elementos: {15, 16, 17, 18}',
+                        'Humanidades&B': 'Intersección: {3}',
+                        'Humanidades&C': 'Intersección: {4}',
+                        'Humanidades&D': 'Intersección: {}',
+                        'Humanidades&E': 'Intersección: {}',
+                        'B&C': 'Intersección: {3}',
+                        'B&D': 'Intersección: {}',
+                        'B&E': 'Intersección: {}',
+                        'C&D': 'Intersección: {}',
+                        'C&E': 'Intersección: {}',
+                        'D&E': 'Intersección: {}',
+                        'Humanidades&B&C&D&E': 'Intersección: {}'
+                    };
+                    return `<b>${this.point.name}</b><br>${elements[this.point.name] || 'Sin datos'}`;
+                }
+            },
+            exporting: {
+                buttons: {
+                    contextButton: {
+                        menuItems: [
+                            'printChart',
+                            'separator',
+                            'downloadPNG',
+                            'downloadJPEG',
+                            'downloadPDF',
+                            'downloadSVG',
+                            'separator',
+                            'viewFullscreen'
+                        ]
+                    }
+                }
+            },
+            series: [{
+                type: 'venn',
+                data: [
+                    {sets: ['Humanidades'], value: 10, name: 'Humanidades'},
+                    {sets: ['B'], value: 10, name: 'B'},
+                    {sets: ['C'], value: 10, name: 'C'},
+                    {sets: ['D'], value: 10, name: 'D'},
+                    {sets: ['E'], value: 10, name: 'E'},
+                    {sets: ['Humanidades', 'B'], value: 2, name: 'Hu&B'},
+                    {sets: ['Humanidades', 'C'], value: 2, name: 'Hu&C'},
+                    {sets: ['Humanidades', 'D'], value: 1, name: 'Hu&D'},
+                    {sets: ['Humanidades', 'E'], value: 1, name: 'Hu&E'},
+                    {sets: ['B', 'C'], value: 2, name: 'B&C'},
+                    {sets: ['B', 'D'], value: 1, name: 'B&D'},
+                    {sets: ['B', 'E'], value: 1, name: 'B&E'},
+                    {sets: ['C', 'D'], value: 1, name: 'C&D'},
+                    {sets: ['C', 'E'], value: 1, name: 'C&E'},
+                    {sets: ['D', 'E'], value: 1, name: 'D&E'},
+                    {sets: ['Hu', 'B', 'C', 'D', 'E'], value: 1, name: 'Hu&B&C&D&E'}
+                ]
+            }]
+        });
+    </script>
+</body>
+</html>

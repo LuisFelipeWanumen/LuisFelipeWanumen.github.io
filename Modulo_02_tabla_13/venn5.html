@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/venn.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            display: flex;
+            flex-direction: row;
+        }
+        #vennContainer {
+            width: 70%;
+            height: 600px;
+        }
+        #tableContainer {
+            width: 30%;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-left: 1px solid #ccc;
+            overflow-y: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+    <title>Diagrama de Venn con Tabla</title>
+</head>
+<body>
+    <div id="container">
+        <div id="vennContainer"></div>
+        <div id="tableContainer">
+            <h3>Elementos del Conjunto</h3>
+            <div id="tableContent">Haz clic en un conjunto o intersección para ver los elementos.</div>
+        </div>
+    </div>
+    <script>
+        // Elementos por conjunto e intersección
+        const elements = {
+            'A': ['1', '2', '3', '4'],
+            'B': ['3', '5', '6', '7'],
+            'C': ['4', '8', '9', '10'],
+            'D': ['11', '12', '13', '14'],
+            'E': ['15', '16', '17', '18'],
+            'A&B': ['3'],
+            'A&C': ['4'],
+            'A&D': [],
+            'A&E': [],
+            'B&C': ['3'],
+            'B&D': [],
+            'B&E': [],
+            'C&D': [],
+            'C&E': [],
+            'D&E': [],
+            'A&B&C&D&E': []
+        };
+
+        // Función para generar la tabla
+        function generateTable(setName) {
+            const items = elements[setName] || [];
+            let tableHTML = `<table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Elemento</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+            if (items.length > 0) {
+                items.forEach((item, index) => {
+                    tableHTML += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${item}</td>
+                        </tr>`;
+                });
+            } else {
+                tableHTML += `
+                    <tr>
+                        <td colspan="2">Sin elementos</td>
+                    </tr>`;
+            }
+            tableHTML += `</tbody></table>`;
+            document.getElementById('tableContent').innerHTML = tableHTML;
+        }
+
+        // Configuración del diagrama
+        Highcharts.chart('vennContainer', {
+            title: {
+                text: 'Diagrama de Venn con Tabla Dinámica'
+            },
+            tooltip: {
+                enabled: false
+            },
+            series: [{
+                type: 'venn',
+                data: [
+                    { sets: ['A'], value: 10, name: 'A' },
+                    { sets: ['B'], value: 10, name: 'B' },
+                    { sets: ['C'], value: 10, name: 'C' },
+                    { sets: ['D'], value: 10, name: 'D' },
+                    { sets: ['E'], value: 10, name: 'E' },
+                    { sets: ['A', 'B'], value: 2, name: 'A&B' },
+                    { sets: ['A', 'C'], value: 2, name: 'A&C' },
+                    { sets: ['A', 'D'], value: 1, name: 'A&D' },
+                    { sets: ['A', 'E'], value: 1, name: 'A&E' },
+                    { sets: ['B', 'C'], value: 2, name: 'B&C' },
+                    { sets: ['B', 'D'], value: 1, name: 'B&D' },
+                    { sets: ['B', 'E'], value: 1, name: 'B&E' },
+                    { sets: ['C', 'D'], value: 1, name: 'C&D' },
+                    { sets: ['C', 'E'], value: 1, name: 'C&E' },
+                    { sets: ['D', 'E'], value: 1, name: 'D&E' },
+                    { sets: ['A', 'B', 'C', 'D', 'E'], value: 1, name: 'A&B&C&D&E' }
+                ]
+            }],
+            plotOptions: {
+                series: {
+                    point: {
+                        events: {
+                            click: function () {
+                                generateTable(this.name);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/venn.js/venn.js"></script>
+    <style>
+        .venn-circle path {
+            fill-opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div id="venn"></div>
+    <script>
+        const sets = [
+            {sets: ['Humanidades'], size: 10},
+            {sets: ['Económico administrativa'], size: 10},
+            {sets: ['Profesional Básica'], size: 10},
+            {sets: ['Profesional Tecnológica'], size: 10},
+            {sets: ['Profesional Ingeniería'], size: 10},
+            {sets: ['Ciencias básicas'], size: 10},
+            {sets: ['A', 'B'], size: 5}
+        ];
+        const chart = venn.VennDiagram();
+        d3.select("#venn").datum(sets).call(chart);
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Calor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        #menu button {
+            display: block;
+            margin: 5px 0;
+            padding: 5px 10px;
+            border: none;
+            background: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #menu button:hover {
+            background: #555;
+        }
+
+        svg {
+            display: block;
+            margin: auto;
+        }
+
+        .cell {
+            stroke: #ccc;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 3px;
+            pointer-events: none;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <button onclick="printHeatmap()">Imprimir todo</button>
+        <button onclick="filterHeatmap('Muy Alto')">Imprimir Muy Altas</button>
+        <button onclick="filterHeatmap('Altas y Muy Altas')">Imprimir Altas y Muy Altas</button>
+        <button onclick="filterHeatmap('Bajas')">Imprimir Bajas</button>
+        <button onclick="filterHeatmap('Nulas')">Imprimir Nulas</button>
+    </div>
+
+    <div id="chart"></div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        // Datos de prueba
+        const data = [];
+        const subjects = Array.from({ length: 60 }, (_, i) => `Asignatura ${i + 1}`);
+        const outcomes = Array.from({ length: 20 }, (_, i) => `Resultado ${i + 1}`);
+        const levels = ["Muy Alto", "Alto", "Medio", "Medio Bajo", "Bajo", "Muy Bajo", "Nulo"];
+        const colorScale = d3.scaleOrdinal()
+            .domain(levels)
+            .range(["#8B0000", "#FF4500", "#FFD700", "#ADFF2F", "#1E90FF", "#87CEEB", "#D3D3D3"]);
+
+        subjects.forEach((subject, i) => {
+            outcomes.forEach((outcome, j) => {
+                const value = levels[Math.floor(Math.random() * levels.length)];
+                data.push({ subject, outcome, value });
+            });
+        });
+
+        const margin = { top: 50, right: 50, bottom: 50, left: 150 };
+        const width = 1200 - margin.left - margin.right;
+        const height = 800 - margin.top - margin.bottom;
+        
+        const svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+        const x = d3.scaleBand()
+            .domain(outcomes)
+            .range([0, width])
+            .padding(0.05);
+
+        const y = d3.scaleBand()
+            .domain(subjects)
+            .range([0, height])
+            .padding(0.05);
+
+        svg.append("g")
+            .call(d3.axisTop(x))
+            .selectAll("text")
+            .attr("transform", "rotate(-45)")
+            .style("text-anchor", "end");
+
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        svg.selectAll(".cell")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("x", d => x(d.outcome))
+            .attr("y", d => y(d.subject))
+            .attr("width", x.bandwidth())
+            .attr("height", y.bandwidth())
+            .attr("class", "cell")
+            .style("fill", d => colorScale(d.value))
+            .on("mouseover", function (event, d) {
+                d3.select("body").append("div")
+                    .attr("class", "tooltip")
+                    .html(`${d.subject} → ${d.outcome}: ${d.value}`)
+                    .style("left", `${event.pageX + 5}px`)
+                    .style("top", `${event.pageY - 25}px`);
+            })
+            .on("mouseout", function () {
+                d3.select(".tooltip").remove();
+            });
+
+        function printHeatmap() {
+            window.print();
+        }
+
+        function filterHeatmap(type) {
+            const filteredData = data.filter(d => {
+                if (type === "Muy Alto") return d.value === "Muy Alto";
+                if (type === "Altas y Muy Altas") return d.value === "Muy Alto" || d.value === "Alto";
+                if (type === "Bajas") return d.value === "Bajo" || d.value === "Muy Bajo";
+                if (type === "Nulas") return d.value === "Nulo";
+                return true;
+            });
+
+            svg.selectAll(".cell")
+                .style("opacity", d => filteredData.includes(d) ? 1 : 0.1);
+        }
+    </script>
+</body>
+</html>

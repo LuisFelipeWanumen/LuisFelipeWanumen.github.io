@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Actividades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .diagram-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 80%;
+            max-width: 1000px;
+        }
+        .activity {
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .activity:hover {
+            transform: scale(1.05);
+            background-color: #45a049;
+        }
+        .activity:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="diagram-container">
+        <div class="activity" onclick="goToActivity(1)">Actividad 1</div>
+        <div class="activity" onclick="goToActivity(2)">Actividad 2</div>
+        <div class="activity" onclick="goToActivity(3)">Actividad 3</div>
+        <div class="activity" onclick="goToActivity(4)">Actividad 4</div>
+        <div class="activity" onclick="goToActivity(5)">Actividad 5</div>
+        <div class="activity" onclick="goToActivity(6)">Actividad 6</div>
+        <div class="activity" onclick="goToActivity(7)">Actividad 7</div>
+        <div class="activity" onclick="goToActivity(8)">Actividad 8</div>
+        <div class="activity" onclick="goToActivity(9)">Actividad 9</div>
+        <div class="activity" onclick="goToActivity(10)">Actividad 10</div>
+        <div class="activity" onclick="goToActivity(11)">Actividad 11</div>
+        <div class="activity" onclick="goToActivity(12)">Actividad 12</div>
+        <div class="activity" onclick="goToActivity(13)">Actividad 9</div>
+        <div class="activity" onclick="goToActivity(14)">Actividad 10</div>
+        <div class="activity" onclick="goToActivity(15)">Actividad 11</div>
+        <div class="activity" onclick="goToActivity(16)">Actividad 12</div>
+        <div class="activity" onclick="goToActivity(17)">Actividad 9</div>
+        <div class="activity" onclick="goToActivity(18)">Actividad 10</div>
+        <div class="activity" onclick="goToActivity(19)">Actividad 11</div>
+        <div class="activity" onclick="goToActivity(20)">Actividad 12</div>
+        <div class="activity" onclick="goToActivity(21)">Actividad 9</div>
+        <div class="activity" onclick="goToActivity(22)">Actividad 10</div>
+        <div class="activity" onclick="goToActivity(23)">Actividad 11</div>
+        <div class="activity" onclick="goToActivity(24)">Actividad 12</div>
+
+    </div>
+
+    <script>
+        function goToActivity(activityNumber) {
+            // window.location.href = `activity${activityNumber}.html`;
+            if (activityNumber === 1) {
+                url = "../Modulo_01_tabla_09/materias.html; // Cambia esta URL por la página web que desees
+            }
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
