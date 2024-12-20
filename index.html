@@ -1,1 +1,17 @@
-window.location.href = "/Modulo_31_PortadaDiseno_Curricular/index.html";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirección con Temporizador</title>
+    <script type="text/javascript">
+        function redirigirConRetraso() {
+            setTimeout(function() {
+                window.location.href = "/Modulo_31_PortadaDiseno_Curricular/index.html";
+            }, 5000); // 5000 milisegundos = 5 segundos
+        }
+    </script>
+</head>
+<body onload="redirigirConRetraso()">
+    <p>Serás redirigido a Ejemplo.com en 5 segundos...</p>
+</body>
+</html>
