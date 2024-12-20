@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenar Tabla de Habilidades y Resultados de Aprendizaje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            margin: 0;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        th:hover {
+            background-color: #45a049;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        select {
+            padding: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tabla de Habilidades y Resultados de Aprendizaje</h1>
+
+    <div class="container">
+        <select id="sortByGeneral" onchange="sortTable()">
+            <option value="Habilidad General">Ordenar por Habilidad General</option>
+            <option value="Resultado de Aprendizaje">Ordenar por Resultado de Aprendizaje</option>
+        </select>
+    </div>
+
+    <table id="skillsTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Habilidad General</th>
+                <th onclick="sortTable(1)">Habilidad Específica</th>
+                <th onclick="sortTable(2)">Descripción de la Habilidad</th>
+                <th onclick="sortTable(3)">Resultados de Aprendizaje Relacionados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se insertan las filas de la tabla -->
+            <tr>
+                <td>H1: Resolución de problemas matemáticos</td>
+                <td>Aplicación de modelos matemáticos</td>
+                <td>Capacidad para aplicar técnicas matemáticas avanzadas para resolver problemas complejos en ingeniería.</td>
+                <td>R1: Aplica modelos matemáticos para resolver problemas de ingeniería en soluciones telemáticas, considerando restricciones técnicas y de eficiencia.</td>
+            </tr>
+            <tr>
+                <td>H2: Diseño de software y sistemas distribuidos</td>
+                <td>Diseño de software para la nube</td>
+                <td>Crear software escalable, seguro y eficiente para entornos de nube.</td>
+                <td>R2: Diseña software para entornos de nube, teniendo en cuenta escalabilidad, seguridad y eficiencia.</td>
+            </tr>
+            <tr>
+                <td>H3: Análisis de datos y experimentación</td>
+                <td>Análisis de grandes volúmenes de datos</td>
+                <td>Analizar datos a gran escala usando experimentación adecuada para obtener conclusiones informadas.</td>
+                <td>R4: Analiza datos a gran escala utilizando experimentación adecuada para obtener conclusiones informadas en ingeniería telemática.</td>
+            </tr>
+            <!-- Agregar más filas según sea necesario -->
+        </tbody>
+    </table>
+
+    <script>
+        // Función para ordenar la tabla
+        function sortTable(columnIndex) {
+            let table = document.getElementById("skillsTable");
+            let rows = Array.from(table.rows).slice(1); // Excluye la primera fila (encabezados)
+            let sortBy = document.getElementById("sortByGeneral").value;
+
+            rows.sort((rowA, rowB) => {
+                let cellA = rowA.cells[columnIndex].innerText;
+                let cellB = rowB.cells[columnIndex].innerText;
+
+                if (sortBy === "Habilidad General") {
+                    return cellA.localeCompare(cellB);
+                } else if (sortBy === "Resultado de Aprendizaje") {
+                    return cellA.localeCompare(cellB);
+                }
+                return 0;
+            });
+
+            // Re-insertar las filas ordenadas
+            rows.forEach(row => table.appendChild(row));
+        }
+    </script>
+
+</body>
+</html>

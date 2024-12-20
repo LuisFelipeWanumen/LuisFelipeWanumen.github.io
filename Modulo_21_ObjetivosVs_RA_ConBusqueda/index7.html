@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetivos y Resultados</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #container {
+            margin-bottom: 20px;
+        }
+        select, button {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabla Dinámica: Objetivos de Programa y Resultados de Aprendizaje</h1>
+
+    <div>
+        <label for="opSelect">Seleccionar Objetivo de Programa:</label>
+        <select id="opSelect">
+            <option value="">-- Selecciona un OP --</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="raSelect">Seleccionar Resultado de Aprendizaje:</label>
+        <select id="raSelect">
+            <option value="">-- Selecciona un RA --</option>
+        </select>
+    </div>
+
+    <button onclick="showAll()">Mostrar Todos</button>
+
+    <table id="resultTable">
+        <thead>
+            <tr>
+                <th>Objetivo de Programa</th>
+                <th>Resultados de Aprendizaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas dinámicas -->
+        </tbody>
+    </table>
+
+    <script>
+        const data = {
+            OP1: ["R1", "R13", "R12", "R9"],
+            OP2: ["R2", "R20", "R7", "R8"],
+            OP3: ["R3", "R5", "R20", "R6"],
+            OP4: ["R4", "R13", "R10", "R12"],
+            OP5: ["R14", "R16", "R19", "R17"],
+            OP6: ["R17", "R18", "R8", "R15"],
+            OP7: ["R16", "R19", "R18"]
+        };
+
+        const descriptions = {
+            OP1: "Aplicar fundamentos matemáticos para resolver problemas complejos en el ámbito de la ingeniería y la tecnología, promoviendo el desarrollo de soluciones innovadoras que atiendan las necesidades del entorno y contribuyan a la sostenibilidad y el avance de la sociedad.",
+            OP2: "Desarrollar soluciones de software innovadoras que respondan a las necesidades del entorno, promoviendo la eficiencia, la escalabilidad y la sostenibilidad, a través de la aplicación de principios de ingeniería y buenas prácticas en el ciclo de vida del software",
+            OP3: "Diseñar arquitecturas telemáticas que integren eficientemente los aspectos técnicos, económicos y sociales, garantizando la escalabilidad y la seguridad de las soluciones implementadas en entornos complejos.",
+            OP4: "Analizar y experimentar con datos y procesos telemáticos para generar soluciones innovadoras que respondan a las necesidades del entorno y optimicen la toma de decisiones en el ámbito de la ingeniería",
+            OP5: "Desarrollar la conciencia ética y la responsabilidad social en los estudiantes, promoviendo el compromiso con el bienestar de la comunidad y fomentando un crecimiento personal que integre valores fundamentales en su práctica profesional en diversos contextos culturales y disciplinarios",
+            OP6: "Gestionar proyectos de manera efectiva, integrando herramientas y metodologías adecuadas que promuevan la colaboración, la innovación y la sostenibilidad, mientras se abordan las necesidades del entorno y se asegura el cumplimiento de los objetivos establecidos con un enfoque en la responsabilidad social y el desarrollo sostenible",
+            OP7: "Promover la responsabilidad social en todos los ámbitos de la práctica profesional, fomentando un enfoque ético y sostenible que integre las necesidades de la comunidad y el medio ambiente, con el fin de contribuir al desarrollo equitativo y a la mejora de la calidad de vida de las personas",
+            R1: "RA1 Aplica modelos matemáticos para resolver problemas de ingeniería en soluciones telemáticas, considerando restricciones técnicas y de eficiencia.\n",
+            R2: "RA2 Diseña software para entornos de nube, teniendo en cuenta escalabilidad, seguridad y eficiencia.\n",
+            R3: "RA3 Diseña sistemas distribuidos con arquitecturas telemáticas, considerando criterios de eficiencia, escalabilidad y seguridad.\n",
+            R4: "RA4 Analiza datos a gran escala utilizando experimentación adecuada para obtener conclusiones informadas en ingeniería telemática.\n",
+            R5: "RA5 Diseña infraestructura telemática eficiente considerando los aspectos técnicos, económicos y sociales del entorno.\n",
+            R6: "RA6 Analiza problemas complejos de ingeniería telemática para proponer soluciones efectivas.\n",
+            R7: "RA7 Procesa datos para diseñar sistemas con arquitecturas de software.\n",
+            R8: "RA8 Construye sistemas informáticos para satisfacer las necesidades del entorno.\n",
+            R9: "RA9 Desarrolla algoritmos para la solución de problemas de ingeniería.\n",
+            R10: "RA10 Automatiza procesos para mejorar la eficiencia en entornos telemáticos.\n",
+            R11: "RA11 Diseña bases de datos para gestionar y organizar información en soluciones telemáticas.\n",
+            R12: "RA12 Evalúa problemas de complejidad algorítmica para optimizar soluciones en ingeniería telemática.\n",
+            R13: "RA13 Aplica técnicas matemáticas para analizar datos en el contexto de soluciones telemáticas.\n",
+            R14: "RA14 Trabaja en equipo en entornos colaborativos con habilidades interpersonales, de una manera ética.\n",
+            R15: "RA15 Aplica estrategias de autoaprendizaje continuo para la adquisición y actualización de conocimientos en el ámbito telemático.\n",
+            R16: "RA16 Ejecuta sus actuaciones con responsabilidad ética y profesional en el ámbito de la ingeniería telemática.\n",
+            R17: "RA17 Lidera equipos de gestión de proyectos en el contexto de la ingeniería telemática, promoviendo la buena comunicación y la claridad en los objetivos.\n",
+            R18: "RA18 Propone proyectos de ingeniería sustentando su viabilidad económica y técnica en el contexto de la ingeniería telemática.\n",
+            R19: "RA19 Analiza el contexto social considerando elementos de responsabilidad social en la práctica de la ingeniería telemática.\n",
+            R20: "RA20 Diseña sistemas con arquitecturas y patrones de software.\n"
+        };
+
+        const opSelect = document.getElementById('opSelect');
+        const raSelect = document.getElementById('raSelect');
+        const tableBody = document.getElementById('resultTable').querySelector('tbody');
+
+        // Populate OP and RA dropdowns
+        Object.keys(data).forEach(op => {
+            const opOption = document.createElement('option');
+            opOption.value = op;
+            opOption.textContent = descriptions[op];
+            opSelect.appendChild(opOption);
+
+            data[op].forEach(ra => {
+                if (!Array.from(raSelect.options).some(option => option.value === ra)) {
+                    const raOption = document.createElement('option');
+                    raOption.value = ra;
+                    raOption.textContent = descriptions[ra];
+                    raSelect.appendChild(raOption);
+                }
+            });
+        });
+
+        function clearTable() {
+            tableBody.innerHTML = '';
+        }
+
+        function addRow(op, raList) {
+            const row = document.createElement('tr');
+            const opCell = document.createElement('td');
+            const raCell = document.createElement('td');
+
+            opCell.textContent = descriptions[op];
+            raCell.textContent = raList.map(ra => descriptions[ra]).join(', ');
+
+            row.appendChild(opCell);
+            row.appendChild(raCell);
+            tableBody.appendChild(row);
+        }
+
+        function showByOP() {
+            const selectedOP = opSelect.value;
+            clearTable();
+            if (selectedOP && data[selectedOP]) {
+                addRow(selectedOP, data[selectedOP]);
+            }
+        }
+
+        function showByRA() {
+            const selectedRA = raSelect.value;
+            clearTable();
+            if (selectedRA) {
+                Object.keys(data).forEach(op => {
+                    if (data[op].includes(selectedRA)) {
+                        addRow(op, [selectedRA]);
+                    }
+                });
+            }
+        }
+
+        function showAll() {
+            clearTable();
+            Object.keys(data).forEach(op => {
+                addRow(op, data[op]);
+            });
+        }
+
+        opSelect.addEventListener('change', showByOP);
+        raSelect.addEventListener('change', showByRA);
+
+        // Display all by default
+        showAll();
+    </script>
+</body>
+</html>

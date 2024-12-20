@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla Interactiva de Habilidades</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      margin: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    th:hover {
+      background-color: #45a049;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .container {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    .sorting-icon {
+      margin-left: 10px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <table id="tabla">
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">Habilidad General <span id="sort-icon-0" class="sorting-icon">&#8597;</span></th>
+          <th onclick="sortTable(1)">Habilidad Específica <span id="sort-icon-1" class="sorting-icon">&#8597;</span></th>
+          <th onclick="sortTable(2)">Descripción de la Habilidad <span id="sort-icon-2" class="sorting-icon">&#8597;</span></th>
+          <th onclick="sortTable(3)">Resultados de Aprendizaje Relacionados <span id="sort-icon-3" class="sorting-icon">&#8597;</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Fila 1 -->
+        <tr>
+          <td>H1: Resolución de problemas matemáticos</td>
+          <td>Aplicación de modelos matemáticos</td>
+          <td>Capacidad para aplicar técnicas matemáticas avanzadas para resolver problemas complejos en ingeniería.</td>
+          <td>R1: Aplica modelos matemáticos para resolver problemas de ingeniería en soluciones telemáticas, considerando restricciones técnicas y de eficiencia.</td>
+        </tr>
+        <!-- Fila 2 -->
+        <tr>
+          <td>H2: Diseño de software y sistemas distribuidos</td>
+          <td>Diseño de software para la nube</td>
+          <td>Crear software escalable, seguro y eficiente para entornos de nube.</td>
+          <td>R2: Diseña software para entornos de nube, teniendo en cuenta escalabilidad, seguridad y eficiencia.</td>
+        </tr>
+        <!-- Fila 3 -->
+        <tr>
+          <td>H3: Análisis de datos y experimentación</td>
+          <td>Análisis de grandes volúmenes de datos</td>
+          <td>Analizar datos a gran escala usando experimentación adecuada para obtener conclusiones informadas.</td>
+          <td>R4: Analiza datos a gran escala utilizando experimentación adecuada para obtener conclusiones informadas en ingeniería telemática.</td>
+        </tr>
+        <!-- Fila 4 -->
+        <tr>
+          <td>H4: Desarrollo de soluciones informáticas</td>
+          <td>Desarrollo de algoritmos</td>
+          <td>Crear algoritmos eficientes para resolver problemas complejos de ingeniería telemática.</td>
+          <td>R9: Desarrolla algoritmos para la solución de problemas de ingeniería.</td>
+        </tr>
+        <!-- Fila 5 -->
+        <tr>
+          <td>H5: Diseño de infraestructura telemática</td>
+          <td>Diseño de infraestructura telemática eficiente</td>
+          <td>Diseñar soluciones eficientes de infraestructura telemática considerando factores técnicos y sociales.</td>
+          <td>R5: Diseña infraestructura telemática eficiente considerando los aspectos técnicos, económicos y sociales del entorno.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let sortDirection = [0, 0, 0, 0]; // Estado de la dirección de ordenación (0: no ordenado, 1: ascendente, -1: descendente)
+
+    function sortTable(columnIndex) {
+      const table = document.getElementById("tabla");
+      const rows = Array.from(table.rows).slice(1); // Obtener las filas (excepto la cabecera)
+      const sortIcon = document.getElementById(`sort-icon-${columnIndex}`);
+      
+      // Cambiar la dirección del orden
+      sortDirection[columnIndex] = sortDirection[columnIndex] === 1 ? -1 : 1;
+
+      // Ordenar las filas
+      rows.sort((rowA, rowB) => {
+        const cellA = rowA.cells[columnIndex].innerText.trim();
+        const cellB = rowB.cells[columnIndex].innerText.trim();
+
+        const comparison = cellA.localeCompare(cellB);
+        return sortDirection[columnIndex] * comparison;
+      });
+
+      // Actualizar la tabla con las filas ordenadas
+      rows.forEach(row => table.appendChild(row));
+
+      // Actualizar el ícono de la dirección de orden
+      updateSortIcon(sortIcon, sortDirection[columnIndex]);
+    }
+
+    function updateSortIcon(icon, direction) {
+      icon.innerHTML = direction === 1 ? "&#8593;" : "&#8595;";
+    }
+  </script>
+</body>
+</html>

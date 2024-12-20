@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz de Resultados de Aprendizaje</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Pestañas de Semestres -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="showSemester(0)">Semestre 1</button>
+            <button class="tab-button" onclick="showSemester(1)">Semestre 2</button>
+            <button class="tab-button" onclick="showSemester(2)">Semestre 3</button>
+            <!-- Más semestres -->
+        </div>
+
+        <!-- Contenedor de búsqueda -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar asignatura..." onkeyup="searchSubject()">
+        </div>
+
+        <!-- Tablas de Resultados de Aprendizaje -->
+        <div class="table-container">
+            <div id="semester-content">
+                <!-- Las tablas se cargarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+[
+  {
+    "subject": "Cátedra de Contexto",
+    "results": [
+      {
+        "learningOutcome": "RA19",
+        "description": "Analiza el contexto social considerando elementos de responsabilidad social...",
+        "relation": "Muy alta",
+        "percentage": 20,
+        "justification": "La Cátedra de Contexto tiene una relación directa con la comprensión del impacto social y la responsabilidad ética en la práctica de la ingeniería telemática."
+      },
+      {
+        "learningOutcome": "RA16",
+        "description": "Ejecuta sus actuaciones con responsabilidad ética y profesional en el ámbito de la ingeniería telemática.",
+        "relation": "Muy alta",
+        "percentage": 18,
+        "justification": "La materia fomenta una comprensión ética y profesional en el ámbito de la ingeniería, clave para la toma de decisiones responsables en proyectos."
+      }
+      // Continúa con los demás resultados...
+    ]
+  }
+  // Agregar otras asignaturas aquí
+]

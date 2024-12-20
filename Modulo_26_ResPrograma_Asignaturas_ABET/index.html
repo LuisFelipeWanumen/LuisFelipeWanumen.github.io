@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz de Cursos y Resultados de Aprendizaje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover td {
+            background-color: #f0f8ff;
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+        }
+
+        .filter-section select, .filter-section input {
+            padding: 10px;
+            margin-right: 10px;
+            font-size: 1em;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            font-size: 0.9em;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .badge-muy-alta { background-color: #e74c3c; }
+        .badge-alta { background-color: #f39c12; }
+        .badge-baja { background-color: #2ecc71; }
+    </style>
+</head>
+<body>
+
+<header>
+    Cursos y Resultados de Aprendizaje
+</header>
+
+<div class="container">
+    <div class="filter-section">
+        <input type="text" id="searchInput" placeholder="Buscar curso..." onkeyup="filterTable()">
+    </div>
+
+    <table id="coursesTable">
+        <thead>
+            <tr>
+                <th>Curso</th>
+                <th>SO1: Identificación, Formulación y Solución de Problemas</th>
+                <th>SO2: Diseño de Soluciones de Ingeniería</th>
+                <th>SO3: Comunicación Efectiva</th>
+                <th>SO4: Ética y Responsabilidad Profesional</th>
+                <th>SO5: Trabajo en Equipo y Colaboración</th>
+                <th>SO6: Experimentación y Análisis de Datos</th>
+                <th>SO7: Aprendizaje Continuo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data rows will be inserted here dynamically using JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const data = [
+        ["Cálculo Diferencial", "Muy Alta", "Alta", "Baja", "Baja", "Baja", "Alta", "Baja"],
+        ["Álgebra Lineal", "Alta", "Baja", "Baja", "Baja", "Baja", "Alta", "Baja"],
+        ["Cálculo Integral", "Muy Alta", "Alta", "Baja", "Baja", "Baja", "Alta", "Baja"],
+        ["Ecuaciones Diferenciales", "Alta", "Baja", "Baja", "Baja", "Baja", "Alta", "Baja"],
+        ["Matemáticas Avanzadas", "Muy Alta", "Alta", "Baja", "Baja", "Baja", "Alta", "Baja"],
+        ["Física Mecánica", "Alta", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Introducción a Algoritmos", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Lógica Matemática", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Análisis de Sistemas", "Baja", "Alta", "Baja", "Baja", "Alta", "Baja", "Baja"],
+        ["Estructura de Datos", "Baja", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Programación Orientada a Objetos", "Baja", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Programación Avanzada", "Baja", "Muy Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Programación Web", "Baja", "Muy Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Bases de Datos Distribuidas", "Baja", "Muy Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Bases de Datos Avanzadas", "Baja", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Análisis de Datos", "Baja", "Baja", "Baja", "Baja", "Baja", "Muy Alta", "Baja"],
+        ["Teoría General de Sistemas", "Baja", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Sistemas Operacionales", "Baja", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Redes Corporativas", "Baja", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Programación Multi-nivel", "Baja", "Muy Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Aplicaciones para Internet", "Baja", "Alta", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Análisis de Fourier", "Baja", "Baja", "Baja", "Baja", "Baja", "Muy Alta", "Baja"],
+        ["Computación Cuántica", "Baja", "Baja", "Baja", "Baja", "Baja", "Alta", "Baja"],
+        ["Taller de Investigación", "Baja", "Baja", "Baja", "Baja", "Baja", "Muy Alta", "Muy Alta"],
+        ["Ética Profesional", "Baja", "Baja", "Baja", "Muy Alta", "Baja", "Baja", "Baja"],
+        ["Evaluación de Proyectos", "Baja", "Baja", "Muy Alta", "Baja", "Baja", "Baja", "Baja"],
+        ["Ingeniería Económica", "Baja", "Baja", "Baja", "Baja", "Baja", "Baja", "Baja"],
+        ["Cátedra de Contexto, Ciencia, Tecnología y Sociedad", "Baja", "Baja", "Baja", "Muy Alta", "Baja", "Baja", "Baja"]
+    ];
+
+    const tableBody = document.querySelector("#coursesTable tbody");
+
+    // Function to insert data into table
+    function populateTable() {
+        data.forEach(row => {
+            const tr = document.createElement("tr");
+            row.forEach(cell => {
+                const td = document.createElement("td");
+                td.innerHTML = `<span class="badge badge-${getBadgeClass(cell)}">${cell}</span>`;
+                tr.appendChild(td);
+            });
+            tableBody.appendChild(tr);
+        });
+    }
+
+    // Function to get the badge class based on the cell value
+    function getBadgeClass(value) {
+        switch (value) {
+            case "Muy Alta":
+                return "muy-alta";
+            case "Alta":
+                return "alta";
+            case "Baja":
+                return "baja";
+            default:
+                return "";
+        }
+    }
+
+    // Filter function
+    function filterTable() {
+        const filter = document.getElementById('searchInput').value.toUpperCase();
+        const rows = tableBody.getElementsByTagName("tr");
+
+        for (let i = 0; i < rows.length; i++) {
+            let course = rows[i].getElementsByTagName("td")[0].textContent || rows[i].getElementsByTagName("td")[0].innerText;
+            if (course.toUpperCase().indexOf(filter) > -1) {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+
+    // Initialize the table
+    populateTable();
+</script>
+
+</body>
+</html>
