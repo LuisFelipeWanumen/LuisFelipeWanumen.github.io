@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radial Menu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #282c34;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        .menu {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .menu-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background-color: #0078d4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .menu-center span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .menu-option, .sub-option, .tertiary-option {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70px;
+            height: 70px;
+            background-color: #1e90ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu-option span, .sub-option span, .tertiary-option span {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .menu-option.active, .sub-option.active, .tertiary-option.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-center" id="menuCenter">
+            <span>Menu</span>
+        </div>
+
+        <!-- Primary Options -->
+        <div class="menu-option" id="option1" data-level="1" style="--angle: 0deg;">
+            <span>Option 1</span>
+        </div>
+        <div class="menu-option" id="option2" data-level="1" style="--angle: 90deg;">
+            <span>Option 2</span>
+        </div>
+        <div class="menu-option" id="option3" data-level="1" style="--angle: 180deg;">
+            <span>Option 3</span>
+        </div>
+        <div class="menu-option" id="option4" data-level="1" style="--angle: 270deg;">
+            <span>Option 4</span>
+        </div>
+
+        <!-- Secondary Options for Option 1 -->
+        <div class="sub-option" id="sub1-1" data-parent="option1" style="--angle: 45deg;">
+            <span>Sub 1.1</span>
+        </div>
+        <div class="sub-option" id="sub1-2" data-parent="option1" style="--angle: 135deg;">
+            <span>Sub 1.2</span>
+        </div>
+
+        <!-- Tertiary Options for Sub 1.1 -->
+        <div class="tertiary-option" id="ter1-1-1" data-parent="sub1-1" style="--angle: 90deg;">
+            <span>Ter 1.1.1</span>
+        </div>
+        <div class="tertiary-option" id="ter1-1-2" data-parent="sub1-1" style="--angle: 180deg;">
+            <span>Ter 1.1.2</span>
+        </div>
+    </div>
+
+    <script>
+        const menuCenter = document.getElementById('menuCenter');
+        const primaryOptions = document.querySelectorAll('.menu-option');
+        const subOptions = document.querySelectorAll('.sub-option');
+        const tertiaryOptions = document.querySelectorAll('.tertiary-option');
+
+        // Toggle primary menu
+        menuCenter.addEventListener('click', () => {
+            primaryOptions.forEach((option, index) => {
+                const angle = 360 / primaryOptions.length * index;
+                const x = Math.cos(angle * Math.PI / 180) * 120;
+                const y = Math.sin(angle * Math.PI / 180) * 120;
+
+                option.style.transform = `translate(${x}px, ${y}px) scale(1)`;
+                option.classList.toggle('active');
+            });
+        });
+
+        // Toggle secondary menu
+        primaryOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const parentId = option.id;
+                subOptions.forEach(sub => {
+                    if (sub.dataset.parent === parentId) {
+                        const angle = 360 / 2 * [...subOptions].filter(s => s.dataset.parent === parentId).indexOf(sub);
+                        const x = Math.cos(angle * Math.PI / 180) * 180;
+                        const y = Math.sin(angle * Math.PI / 180) * 180;
+
+                        sub.style.transform = `translate(${x}px, ${y}px) scale(1)`;
+                        sub.classList.toggle('active');
+                    }
+                });
+            });
+        });
+
+        // Toggle tertiary menu
+        subOptions.forEach(sub => {
+            sub.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const parentId = sub.id;
+                tertiaryOptions.forEach(ter => {
+                    if (ter.dataset.parent === parentId) {
+                        const angle = 360 / 2 * [...tertiaryOptions].filter(t => t.dataset.parent === parentId).indexOf(ter);
+                        const x = Math.cos(angle * Math.PI / 180) * 240;
+                        const y = Math.sin(angle * Math.PI / 180) * 240;
+
+                        ter.style.transform = `translate(${x}px, ${y}px) scale(1)`;
+                        ter.classList.toggle('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

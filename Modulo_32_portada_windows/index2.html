@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radial Menu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #282c34;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        .menu {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .menu-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background-color: #0078d4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .menu-center span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .menu-option {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            background-color: #1e90ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu-option span {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .menu-option.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-center" id="menuCenter">
+            <span>Menu</span>
+        </div>
+        <div class="menu-option" id="option1" style="--angle: 0deg;">
+            <span>Option 1</span>
+        </div>
+        <div class="menu-option" id="option2" style="--angle: 72deg;">
+            <span>Option 2</span>
+        </div>
+        <div class="menu-option" id="option3" style="--angle: 144deg;">
+            <span>Option 3</span>
+        </div>
+        <div class="menu-option" id="option4" style="--angle: 216deg;">
+            <span>Option 4</span>
+        </div>
+        <div class="menu-option" id="option5" style="--angle: 288deg;">
+            <span>Option 5</span>
+        </div>
+    </div>
+
+    <script>
+        const menuCenter = document.getElementById('menuCenter');
+        const options = document.querySelectorAll('.menu-option');
+
+        menuCenter.addEventListener('click', () => {
+            options.forEach((option, index) => {
+                const angle = 360 / options.length * index;
+                const x = Math.cos(angle * Math.PI / 180) * 120;
+                const y = Math.sin(angle * Math.PI / 180) * 120;
+
+                option.style.transform = `translate(${x}px, ${y}px) scale(1)`;
+                option.classList.toggle('active');
+            });
+        });
+
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                alert(`${option.innerText} clicked!`);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Estilo Microsoft Office</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li><button onclick="cambiarBarra('inicio')">Inicio</button></li>
+            <li><button onclick="cambiarBarra('referencias')">Referencias</button></li>
+            <li><button onclick="cambiarBarra('vista')">Vista</button></li>
+        </ul>
+    </div>
+
+    <div class="barra-herramientas">
+        <div id="inicio" class="barra">
+            <button>Nuevo Documento</button>
+            <button>Guardar</button>
+            <button>Imprimir</button>
+            <button>Deshacer</button>
+            <button>Rehacer</button>
+        </div>
+        <div id="referencias" class="barra" style="display:none;">
+            <button>Índice</button>
+            <button>Notas al pie</button>
+            <button>Citas</button>
+            <button>Tabla de contenido</button>
+        </div>
+        <div id="vista" class="barra" style="display:none;">
+            <button>Zoom</button>
+            <button>Modo de lectura</button>
+            <button>Diseño</button>
+            <button>Vista previa</button>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows-Like Menu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Segoe UI, Arial, sans-serif;
+            background-color: #0078d7;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Taskbar */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #2d2d2d;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Windows Button */
+        .windows-button {
+            width: 40px;
+            height: 40px;
+            background-color: #0078d4;
+            border: none;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .windows-button img {
+            width: 25px;
+            height: 25px;
+        }
+
+        /* Start Menu */
+        .start-menu {
+            position: fixed;
+            bottom: 50px;
+            left: 10px;
+            width: 300px;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            display: none;
+            flex-direction: column;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .start-menu.active {
+            display: flex;
+        }
+
+        .start-menu .menu-header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #0078d4;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .start-menu .menu-header img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .start-menu .menu-header span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .start-menu .icon {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .start-menu .icon:hover {
+            background-color: #292929;
+        }
+
+        .start-menu .icon img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .start-menu .icon span {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="windows-button" id="windowsButton">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Windows_logo_-_2012.svg" alt="Windows Logo">
+        </button>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="startMenu">
+        <div class="menu-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Windows_logo_-_2012.svg" alt="Start">
+            <span>Start</span>
+        </div>
+        <div class="icon" onclick="location.href='page1.html'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Folder_icon.svg" alt="Folder">
+            <span>Documents</span>
+        </div>
+        <div class="icon" onclick="location.href='page2.html'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Microsoft_Edge_logo_%282019%29.svg" alt="Browser">
+            <span>Browser</span>
+        </div>
+        <div class="icon" onclick="location.href='page3.html'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Settings_icon_%28Windows_10%29.png" alt="Settings">
+            <span>Settings</span>
+        </div>
+    </div>
+
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            const windowsButton = document.getElementById('windowsButton');
+            const startMenu = document.getElementById('startMenu');
+
+            windowsButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // Evita cerrar inmediatamente después de abrir
+                startMenu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!startMenu.contains(e.target) && e.target !== windowsButton) {
+                    startMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
