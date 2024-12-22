@@ -1,6 +1,6 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
-  // Categorías
+  // Categorias
   const resultadosAprendizaje = Array.from({ length: 20 }, (_, i) => `RA${i + 1}`);
   const espaciosAcademicos = Array.from({ length: 60 }, (_, i) => `Espacio ${i + 1}`);
 
@@ -13,14 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Crear gráfico
+  // Crear grafico
   const chart = Highcharts.chart('heatmap-container', {
     chart: {
       type: 'heatmap',
       plotBorderWidth: 1
     },
     title: {
-      text: 'Mapa de Contribución de Espacios Académicos a Resultados de Aprendizaje'
+      text: 'Mapa de Contribucion de Espacios Academicos a Resultados de Aprendizaje'
     },
     xAxis: {
       categories: resultadosAprendizaje,
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     yAxis: {
       categories: espaciosAcademicos,
-      title: { text: 'Espacios Académicos' },
+      title: { text: 'Espacios Academicos' },
       reversed: true
     },
     colorAxis: {
@@ -56,12 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return `
           <b>Resultado:</b> ${resultadosAprendizaje[this.point.x]}<br>
           <b>Espacio:</b> ${espaciosAcademicos[this.point.y]}<br>
-          <b>Contribución:</b> ${this.point.value}%
+          <b>Contribucion:</b> ${this.point.value}%
         `;
       }
     },
     series: [{
-      name: 'Contribución',
+      name: 'Contribucion',
       borderWidth: 1,
       data,
       dataLabels: {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }]
   });
 
-  // Toggle menú
+  // Toggle menu
   const menu = document.getElementById('menu');
   document.getElementById('toggleMenu').addEventListener('click', () => {
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Imprimir gráfico
+  // Imprimir grafico
   document.getElementById('printChart').addEventListener('click', () => {
     chart.print();
   });
