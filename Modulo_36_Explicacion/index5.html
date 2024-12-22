@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de PDF con Menú Lateral</title>
+    <link rel="stylesheet" href="styles5.css">
+</head>
+<body>
+    <!-- Menú lateral -->
+    <nav>
+        <h2>Índice</h2>
+        <ul>
+            <li><a href="#" data-page="1">Impacto en nuestra autoevaluación</a></li>
+            <li><a href="#" data-page="3">Impacto en la acreditación institucional</a></li>
+            <li><a href="#" data-page="5">Impacto en la acreditación del programa</a></li>
+            <li><a href="#" data-page="7">Impacto en la reforma curricular</a></li>
+            <li><a href="#" data-page="9">Impacto en otras áreas claves del programa</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <canvas id="pdf-render"></canvas>
+        <div class="controls">
+            <button id="prev-page">Anterior</button>
+            <span id="page-num"></span> / <span id="page-count"></span>
+            <button id="next-page">Siguiente</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="script5.js"></script>
+</body>
+</html>

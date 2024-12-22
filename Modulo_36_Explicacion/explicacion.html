@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pirámides Interactivas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        svg {
+            cursor: pointer;
+        }
+        text {
+            font-size: 12px;
+            fill: black;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pirámides Interactivas</h1>
+    <div class="container">
+        <div id="pyramidA">
+            <h2>Pirámide A</h2>
+            <svg width="200" height="450">
+                <g>
+                    <polygon points="100,10 10,60 190,60" fill="#ff9999" data-level="1"></polygon>
+                    <text x="60" y="40">Entorno Curricular</text>
+
+                    <polygon points="100,60 20,110 180,110" fill="#ffcc99" data-level="2"></polygon>
+                    <text x="50" y="90">Análisis de Fuentes</text>
+
+                    <polygon points="100,110 30,160 170,160" fill="#ffff99" data-level="3"></polygon>
+                    <text x="55" y="140">Captura de Información</text>
+
+                    <polygon points="100,160 40,210 160,210" fill="#ccff99" data-level="4"></polygon>
+                    <text x="45" y="190">Refinamiento de la Información</text>
+
+                    <polygon points="100,210 50,260 150,260" fill="#99ff99" data-level="5"></polygon>
+                    <text x="50" y="240">Procesamiento de Información</text>
+
+                    <polygon points="100,260 60,310 140,310" fill="#99ffcc" data-level="6"></polygon>
+                    <text x="60" y="290">Mirada Estratégica</text>
+
+                    <polygon points="100,310 70,360 130,360" fill="#99ffff" data-level="7"></polygon>
+                    <text x="40" y="340">Propuesta Diseño Curricular 1</text>
+
+                    <polygon points="100,360 80,410 120,410" fill="#99ccff" data-level="8"></polygon>
+                    <text x="35" y="390">Propuesta Diseño Curricular 2</text>
+
+                    <polygon points="100,410 90,460 110,460" fill="#cc99ff" data-level="9"></polygon>
+                    <text x="35" y="440">Propuesta Diseño Curricular 3</text>
+                </g>
+            </svg>
+        </div>
+
+        <div id="pyramidB">
+            <h2>Pirámide B</h2>
+            <svg id="pyramidB-svg" width="200" height="500">
+                <g>
+                    <!-- Placeholder for pyramid B -->
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const levelsA = [
+            "Entorno Curricular",
+            "Análisis de Fuentes",
+            "Captura de Información",
+            "Refinamiento de la Información",
+            "Procesamiento de Información",
+            "Mirada Estratégica",
+            "Propuesta Diseño Curricular Parte 1",
+            "Propuesta Diseño Curricular Parte 2",
+            "Propuesta Diseño Curricular Parte 3",
+        ];
+
+        const levelsBData = {
+            1: ["Nivel 1.1", "Nivel 1.2", "Nivel 1.3", "Nivel 1.4", "Nivel 1.5", "Nivel 1.6", "Nivel 1.7", "Nivel 1.8", "Nivel 1.9", "Nivel 1.10"],
+            2: ["Nivel 2.1", "Nivel 2.2", "Nivel 2.3", "Nivel 2.4", "Nivel 2.5", "Nivel 2.6", "Nivel 2.7", "Nivel 2.8", "Nivel 2.9", "Nivel 2.10"],
+            3: ["Nivel 3.1", "Nivel 3.2", "Nivel 3.3", "Nivel 3.4", "Nivel 3.5", "Nivel 3.6", "Nivel 3.7", "Nivel 3.8", "Nivel 3.9", "Nivel 3.10"],
+            4: ["Nivel 4.1", "Nivel 4.2", "Nivel 4.3", "Nivel 4.4", "Nivel 4.5", "Nivel 4.6", "Nivel 4.7", "Nivel 4.8", "Nivel 4.9", "Nivel 4.10"],
+            5: ["Nivel 5.1", "Nivel 5.2", "Nivel 5.3", "Nivel 5.4", "Nivel 5.5", "Nivel 5.6", "Nivel 5.7", "Nivel 5.8", "Nivel 5.9", "Nivel 5.10"],
+            6: ["Nivel 6.1", "Nivel 6.2", "Nivel 6.3", "Nivel 6.4", "Nivel 6.5", "Nivel 6.6", "Nivel 6.7", "Nivel 6.8", "Nivel 6.9", "Nivel 6.10"],
+            7: ["Nivel 7.1", "Nivel 7.2", "Nivel 7.3", "Nivel 7.4", "Nivel 7.5", "Nivel 7.6", "Nivel 7.7", "Nivel 7.8", "Nivel 7.9", "Nivel 7.10"],
+            8: ["Nivel 8.1", "Nivel 8.2", "Nivel 8.3", "Nivel 8.4", "Nivel 8.5", "Nivel 8.6", "Nivel 8.7", "Nivel 8.8", "Nivel 8.9", "Nivel 8.10"],
+            9: ["Nivel 9.1", "Nivel 9.2", "Nivel 9.3", "Nivel 9.4", "Nivel 9.5", "Nivel 9.6", "Nivel 9.7", "Nivel 9.8", "Nivel 9.9", "Nivel 9.10"],
+        };
+
+        const pyramidA = document.querySelector('#pyramidA svg');
+        const pyramidB = document.querySelector('#pyramidB-svg g');
+
+        pyramidA.addEventListener('click', (event) => {
+            const level = event.target.dataset.level;
+            if (level) {
+                renderPyramidB(level);
+            }
+        });
+
+        function renderPyramidB(level) {
+            pyramidB.innerHTML = '';
+            const colors = ["#ffe4e1", "#fadadd", "#ffdead", "#fafad2", "#dfffaf", "#afeeee", "#dda0dd", "#b0e0e6", "#87cefa", "#add8e6"];
+            levelsBData[level]?.forEach((text, index) => {
+                const y = index * 40 + 20;
+                const color = colors[index % colors.length];
+                const points = `${100 - (index * 5)},${y} ${20 + (index * 5)},${y + 40} ${180 - (index * 5)},${y + 40}`;
+                const polygon = `<polygon points="${points}" fill="${color}" data-url="https://example.com/${level}-${index + 1}"></polygon>`;
+                const textElement = `<text x="50" y="${y + 25}">${text}</text>`;
+                pyramidB.innerHTML += polygon + textElement;
+            });
+
+            pyramidB.querySelectorAll('polygon').forEach(polygon => {
+                polygon.addEventListener('click', (event) => {
+                    const url = event.target.dataset.url;
+                    if (url) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
