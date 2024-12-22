@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de PDF con Menú Lateral</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Menú lateral -->
+    <nav>
+        <h2>Índice</h2>
+        <ul>
+            <li><a href="#" data-page="1">¿Forma de adquirir la información?</a></li>
+            <li><a href="#" data-page="8">¿Modelo para evaluar aprendizaje?</a></li>
+            <li><a href="#" data-page="9">¿Como estamos haciendo modelos arquitectónicos?</a></li>
+            <li><a href="#" data-page="13">¿Como estamos haciendo modelado de datos?</a></li>
+            <li><a href="#" data-page="19">¿Como estamos haciendo APIs REST?</a></li>
+            <li><a href="#" data-page="22">¿Cómo estamos construyendo Fronts?</a></li>
+            <li><a href="#" data-page="25">¿Cómo estamos construyendo Backends?</a></li>
+            <li><a href="#" data-page="29">¿Cómo estamos construyendo Anteproyectos?</a></li>
+            <li><a href="#" data-page="32">¿Cómo estamos construyendo Artículos?</a></li>
+            <li><a href="#" data-page="36">¿Cómo estamos diseñando redes?</a></li>
+            <li><a href="#" data-page="40">¿Cómo estamos haciendo planeación estratégica?</a></li>
+            <li><a href="#" data-page="44">¿Cómo estamos haciendo aplicaciones móviles?</a></li>
+            <li><a href="#" data-page="48">¿Cómo estamos haciendo redes neuronales?</a></li>
+            <li><a href="#" data-page="52">¿Cómo estamos resolviendo ecuaciones?</a></li>
+            <li><a href="#" data-page="56">¿Cómo estamos planteando ecuaciones?</a></li>
+            <li><a href="#" data-page="56">¿Cómo estamos interpretando ecuaciones?</a></li>
+            <li><a href="#" data-page="64">¿Cómo estamos haciendo planes de negocio?</a></li>
+            <li><a href="#" data-page="68">¿Cómo estamos haciendo planes de riesgo?</a></li>
+            <li><a href="#" data-page="72">¿Cómo estamos implementando normas?</a></li>
+            <li><a href="#" data-page="76">¿Cómo estamos haciendo planes de calidad?</a></li>
+            <li><a href="#" data-page="80">¿Cómo estamos haciendo planes de seguridad?</a></li>
+            <li><a href="#" data-page="84">¿Cómo estamos haciendo aplicaciones multiplataforma?</a></li>
+            <li><a href="#" data-page="88">¿Cómo estamos implementando patrones de diseño?</a></li>
+            <li><a href="#" data-page="93">ACCIONES FUTURAS</a></li>
+            <li><a href="#" data-page="95">Cuestionario propuesto para el 2025</a></li>
+            <li><a href="#" data-page="97">Apoyo otros actores a consejerías</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <canvas id="pdf-render"></canvas>
+        <div class="controls">
+            <button id="prev-page">Anterior</button>
+            <span id="page-num"></span> / <span id="page-count"></span>
+            <button id="next-page">Siguiente</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
